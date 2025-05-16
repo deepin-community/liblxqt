@@ -25,7 +25,7 @@
 <context>
     <name>LXQt::NotificationPrivate</name>
     <message>
-        <location filename="../lxqtnotification.cpp" line="163"/>
+        <location filename="../lxqtnotification.cpp" line="161"/>
         <source>Notifications Fallback</source>
         <translation>Náhradní oznamování</translation>
     </message>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="149"/>
         <source>Do you want to really suspend your computer?&lt;p&gt;Suspends the computer into a low power state. System state is not preserved if the power is lost.</source>
-        <translation>Opravdu chcete svůj počítač uspat do operační paměti?&lt;p&gt;Uvede ho to do stavu s nízkým odběrem elektrické energie. Při ztrátě napájení nebude stav systému zachován.</translation>
+        <translation>Opravdu chcete počítač uspat do operační paměti?&lt;p&gt;Uvede ho to do stavu s nízkým odběrem elektrické energie. Při ztrátě napájení ovšem nebude stav systému zachován.</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="158"/>
@@ -85,22 +85,22 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="169"/>
         <source>Do you want to really restart your computer? All unsaved work will be lost...</source>
-        <translation>Opravdu chcete svůj počítač restartovat?&lt;p&gt;Jakákoli neuložená práce bude ztracena…</translation>
+        <translation>Opravdu chcete počítač restartovat?&lt;p&gt;Jakákoli neuložená práce bude ztracena…</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="178"/>
         <source>LXQt Session Shutdown</source>
-        <translation>LXQt sezení – vypnutí</translation>
+        <translation>LXQt sezení – vypnout</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="179"/>
         <source>Do you want to really switch off your computer? All unsaved work will be lost...</source>
-        <translation>Opravdu chcete svůj počítač vypnout?&lt;p&gt;Jakákoli neuložená práce bude ztracena…</translation>
+        <translation>Opravdu chcete počítač vypnout?&lt;p&gt;Jakákoli neuložená práce bude ztracena…</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="188"/>
         <source>LXQt Session Logout</source>
-        <translation>LXQt sezení ‒ odhlášení</translation>
+        <translation>LXQt sezení ‒ odhlásit</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="189"/>
@@ -127,22 +127,22 @@
 <context>
     <name>LXQt::ScreenSaver</name>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="160"/>
+        <location filename="../lxqtscreensaver.cpp" line="161"/>
         <source>Failed to run  &quot;%1&quot;. Ensure you have a locker/screensaver compatible with xdg-screensaver installed and running.</source>
         <translation>Nepodařilo se spustit „%1“. Zajistěte, aby byl nainstalován nástroj pro zamykání / šetřič obrazovky, kompatibilní se specifikací xdg-screensaver a byl spuštěný.</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="164"/>
+        <location filename="../lxqtscreensaver.cpp" line="165"/>
         <source>Failed to run  &quot;%1&quot;. Ensure the specified locker/screensaver is installed and running.</source>
-        <translation>Nepodařilo se spustit „%1“. Zajistěte, aby byl nainstalovaný určený nástroj pro zamykání / šetřič obrazovky a byl spuštěný.</translation>
+        <translation>Nepodařilo se spustit „%1“. Zajistěte, aby byl nainstalovaný zadaný nástroj pro zamykání / šetřič obrazovky a byl spuštěný.</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="242"/>
+        <location filename="../lxqtscreensaver.cpp" line="247"/>
         <source>Lock Screen</source>
         <translation>Zamknout obrazovku</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="155"/>
+        <location filename="../lxqtscreensaver.cpp" line="156"/>
         <source>Screen Saver Error</source>
         <translation>Chyba šetřiče obrazovky</translation>
     </message>
@@ -150,7 +150,7 @@
 <context>
     <name>QCoreApplication</name>
     <message>
-        <location filename="../configdialog/lxqtconfigdialogcmdlineoptions.cpp" line="49"/>
+        <location filename="../configdialog/lxqtconfigdialogcmdlineoptions.cpp" line="47"/>
         <source>Choose the page to be shown.</source>
         <translation>Zvolte stránku kterou zobrazit.</translation>
     </message>

@@ -25,7 +25,7 @@
 <context>
     <name>LXQt::NotificationPrivate</name>
     <message>
-        <location filename="../lxqtnotification.cpp" line="163"/>
+        <location filename="../lxqtnotification.cpp" line="161"/>
         <source>Notifications Fallback</source>
         <translation>Notifications de secours</translation>
     </message>
@@ -40,7 +40,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="115"/>
         <source>Suspend</source>
-        <translation>Suspendre</translation>
+        <translation>Mettre en veille</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="122"/>
@@ -60,12 +60,12 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="148"/>
         <source>LXQt Session Suspend</source>
-        <translation>Suspendre la session LXQt</translation>
+        <translation>Mettre la session LXQt en veille</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="149"/>
         <source>Do you want to really suspend your computer?&lt;p&gt;Suspends the computer into a low power state. System state is not preserved if the power is lost.</source>
-        <translation>Souhaitez-vous vraiment suspendre votre ordinateur ?&lt;p&gt;Votre ordinateur consommera un peu d&apos;énergie. L&apos;état du système ne sera pas préservé en cas de coupure de courant.</translation>
+        <translation>Souhaitez-vous vraiment mettre en veille votre ordinateur ?&lt;p&gt;Votre ordinateur consommera un peu d&apos;énergie. L&apos;état du système ne sera pas préservé en cas de coupure de courant.</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="158"/>
@@ -121,28 +121,28 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="202"/>
         <source>Suspend failed.</source>
-        <translation>Échec de la suspension.</translation>
+        <translation>Échec de mise en veille.</translation>
     </message>
 </context>
 <context>
     <name>LXQt::ScreenSaver</name>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="160"/>
+        <location filename="../lxqtscreensaver.cpp" line="161"/>
         <source>Failed to run  &quot;%1&quot;. Ensure you have a locker/screensaver compatible with xdg-screensaver installed and running.</source>
         <translation>Erreur lors du démarrage de  &quot;%1&quot;. Vérifiez que vous avez un écran de verouillage/veille compatible avec xdg-screensaver installé et démarré.</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="164"/>
+        <location filename="../lxqtscreensaver.cpp" line="165"/>
         <source>Failed to run  &quot;%1&quot;. Ensure the specified locker/screensaver is installed and running.</source>
         <translation>Erreur lors du démarrage de &quot;%1&quot;. Vérifiez que le verouillage/écran de veille est installé et démarré.</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="242"/>
+        <location filename="../lxqtscreensaver.cpp" line="247"/>
         <source>Lock Screen</source>
         <translation>Verrouiller l&apos;écran</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="155"/>
+        <location filename="../lxqtscreensaver.cpp" line="156"/>
         <source>Screen Saver Error</source>
         <translation>Erreur de l&apos;économiseur d&apos;écran</translation>
     </message>
@@ -150,7 +150,7 @@
 <context>
     <name>QCoreApplication</name>
     <message>
-        <location filename="../configdialog/lxqtconfigdialogcmdlineoptions.cpp" line="49"/>
+        <location filename="../configdialog/lxqtconfigdialogcmdlineoptions.cpp" line="47"/>
         <source>Choose the page to be shown.</source>
         <translation>Choisir la page à afficher.</translation>
     </message>

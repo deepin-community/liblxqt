@@ -1,35 +1,38 @@
 Source: liblxqt
-Maintainer: LXQt Packaging Team <pkg-lxqt-devel@lists.alioth.debian.org>
-Uploaders: Alf Gaida <agaida@siduction.org>,
-           ChangZhuo Chen (陳昌倬) <czchen@debian.org>,
+Maintainer: LXQt Packaging Team <team+lxqt@tracker.debian.org>
+Uploaders: ChangZhuo Chen (陳昌倬) <czchen@debian.org>,
            Andrew Lee (李健秋) <ajqlee@debian.org>
 Section: libs
 Priority: optional
-Build-Depends: debhelper-compat (= 12),
+Build-Depends: debhelper-compat (= 13),
                dh-exec,
-               libpolkit-qt5-1-dev,
-               libqt5svg5-dev,
-               libkf5windowsystem-dev,
-               libqt5x11extras5-dev,
-               libqt5xdg-dev (>= 3.3.1~),
-               libqt5xdgiconloader-dev (>= 3.3.1~),
+               libkf6windowsystem-dev (>= 6.0.0~),
+               libpolkit-qt6-1-dev,
+               libglib2.0-dev,
+               qt6-svg-dev,
+               libqt6xdg-dev (>= 4.1.0~),
+               libqt6xdgiconloader-dev (>= 4.1.0~),
                libx11-dev,
                libxss-dev,
-               lxqt-build-tools (>= 0.6.0~)
-Standards-Version: 4.4.0
+               lxqt-build-tools (>= 2.1.0~),
+               qt6-tools-dev (>= 6.7.2)
+Standards-Version: 4.7.0
 Vcs-Browser: https://salsa.debian.org/lxqt-team/liblxqt
 Vcs-Git: https://salsa.debian.org/lxqt-team/liblxqt.git
 Homepage: https://github.com/lxqt/liblxqt
+Rules-Requires-Root: no
 
-Package: liblxqt0
+Package: liblxqt2
 Architecture: any
-Depends: ${shlibs:Depends},
+Multi-Arch: same
+Depends: desktop-file-utils,
+         shared-mime-info,
          ${misc:Depends},
-         desktop-file-utils,
-#         lxqt-backlight-helper [linux-any],
-         shared-mime-info
-Recommends: liblxqt-l10n
+         ${shlibs:Depends}
+Recommends: liblxqt-backlight-helper, liblxqt-l10n
 Pre-Depends: ${misc:Pre-Depends}
+Conflicts: liblxqt1
+Replaces: liblxqt1
 Description: Shared libraries for LXQt desktop environment (libs)
  LXQt is an advanced, easy-to-use, and fast desktop environment based on Qt
  technologies. It has been tailored for users who value simplicity, speed, and
@@ -39,14 +42,16 @@ Description: Shared libraries for LXQt desktop environment (libs)
  This package contains the shared libraries needed by the LXQt desktop
  environment.
 
-Package: liblxqt0-dev
+Package: liblxqt-dev
 Architecture: any
 Section: libdevel
-Depends: ${misc:Depends},
-         liblxqt0 (= ${binary:Version}),
-         libqt5xdg-dev (>= 3.1.0),
-         libqt5xdgiconloader-dev (>= 3.1.0),
-         lxqt-build-tools (>= 0.5.0~)
+Depends: liblxqt2 (= ${binary:Version}),
+         libqt6xdg-dev (>= 4.1.0~),
+         lxqt-build-tools (>= 2.1.0~),
+         libqt6xdgiconloader-dev (>= 4.1.0~),
+         ${misc:Depends}
+Breaks: liblxqt1-dev
+Replaces: liblxqt1-dev
 Description: Shared libraries for LXQt desktop environment (dev)
  LXQt is an advanced, easy-to-use, and fast desktop environment based on Qt
  technologies. It has been tailored for users who value simplicity, speed, and
@@ -55,27 +60,21 @@ Description: Shared libraries for LXQt desktop environment (dev)
  .
  This package contain the development files.
 
+Package: liblxqt-backlight-helper
+Architecture: any
+Depends: liblxqt2 (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Breaks: liblxqt1 (<< 1.2.0-2)
+Replaces: liblxqt1 (<< 1.2.0-2)
+Description: backlight helper for liblxqt
+ This package contains the backlight helper for liblxqt.
+
 Package: liblxqt-l10n
 Architecture: all
 Multi-Arch: foreign
 Section: localization
 Depends: ${misc:Depends},
-         qttranslations5-l10n
-Breaks: liblxqt0 (<< 0.11.0)
-Replaces: liblxqt0 (<< 0.11.0)
+         qt6-translations-l10n
 Description: Language package for liblxqt
  This package contains the l10n files needed by the liblxqt.
-
-
-# Package: lxqt-backlight-helper
-# Architecture: linux-any
-# Depends: ${shlibs:Depends},
-#         ${misc:Depends}
-# Description: LXQt backlight helper for linux
-#  LXQt is an advanced, easy-to-use, and fast desktop environment based on Qt
-# technologies. It has been tailored for users who value simplicity, speed, and
-# an intuitive interface. Unlike most desktop environments, LXQt also works
-# fine with less powerful machines.
-# .
-# This package contains the backlight helper files needed by the linux LXQt
-# desktop environment.

@@ -115,7 +115,7 @@ QSize RotatedWidget::adjustedSize(QSize size) const
     return size;
 }
 
-QPoint RotatedWidget::adjustedPoint(QPoint point) const
+QPointF RotatedWidget::adjustedPoint(QPointF point) const
 {
     switch (mOrigin)
     {
@@ -125,7 +125,7 @@ QPoint RotatedWidget::adjustedPoint(QPoint point) const
 
     case Qt::TopRightCorner:
     case Qt::BottomLeftCorner:
-        point = QPoint(point.y(), point.x());
+        point = QPointF(point.y(), point.x());
         break;
     }
 
@@ -192,7 +192,7 @@ void RotatedWidget::mousePressEvent(QMouseEvent *event)
         return;
     cascadeCall = true;
 
-    QMouseEvent contentEvent(event->type(), adjustedPoint(event->pos()), event->globalPos(), event->button(), event->buttons(), event->modifiers());
+    QMouseEvent contentEvent(event->type(), adjustedPoint(event->pos()), event->globalPosition(), event->button(), event->buttons(), event->modifiers());
     QApplication::sendEvent(mContent, &contentEvent);
 
     cascadeCall = false;
@@ -211,7 +211,7 @@ void RotatedWidget::mouseReleaseEvent(QMouseEvent *event)
         return;
     cascadeCall = true;
 
-    QMouseEvent contentEvent(event->type(), adjustedPoint(event->pos()), event->globalPos(), event->button(), event->buttons(), event->modifiers());
+    QMouseEvent contentEvent(event->type(), adjustedPoint(event->pos()), event->globalPosition(), event->button(), event->buttons(), event->modifiers());
     QApplication::sendEvent(mContent, &contentEvent);
 
     cascadeCall = false;
@@ -230,7 +230,7 @@ void RotatedWidget::mouseDoubleClickEvent(QMouseEvent *event)
         return;
     cascadeCall = true;
 
-    QMouseEvent contentEvent(event->type(), adjustedPoint(event->pos()), event->globalPos(), event->button(), event->buttons(), event->modifiers());
+    QMouseEvent contentEvent(event->type(), adjustedPoint(event->pos()), event->globalPosition(), event->button(), event->buttons(), event->modifiers());
     QApplication::sendEvent(mContent, &contentEvent);
 
     cascadeCall = false;
@@ -249,7 +249,7 @@ void RotatedWidget::mouseMoveEvent(QMouseEvent *event)
         return;
     cascadeCall = true;
 
-    QMouseEvent contentEvent(event->type(), adjustedPoint(event->pos()), event->globalPos(), event->button(), event->buttons(), event->modifiers());
+    QMouseEvent contentEvent(event->type(), adjustedPoint(event->pos()), event->globalPosition(), event->button(), event->buttons(), event->modifiers());
     QApplication::sendEvent(mContent, &contentEvent);
 
     cascadeCall = false;
@@ -269,14 +269,14 @@ void RotatedWidget::wheelEvent(QWheelEvent *event)
         return;
     cascadeCall = true;
 
-    QWheelEvent contentEvent(adjustedPoint(event->pos()), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), event->orientation());
+    QWheelEvent contentEvent(adjustedPoint(event->position()), event->globalPosition(), event->pixelDelta(), event->angleDelta(), event->buttons(), event->modifiers(), event->phase(), false);
     QApplication::sendEvent(mContent, &contentEvent);
 
     cascadeCall = false;
 }
 #endif
 
-void RotatedWidget::enterEvent(QEvent *event)
+void RotatedWidget::enterEvent(QEnterEvent *event)
 {
     if (!mTransferEnterEvent)
     {
