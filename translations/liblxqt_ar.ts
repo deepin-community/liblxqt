@@ -6,7 +6,7 @@
     <message>
         <location filename="../configdialog/lxqtconfigdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>حواريّ</translation>
+        <translation>إستفسار</translation>
     </message>
 </context>
 <context>
@@ -14,7 +14,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="76"/>
         <source>LXQt Power Manager Error</source>
-        <translation>خطأ في مدير لكسكيوت للطاقة</translation>
+        <translation>خطأ في مدير LXQt للطاقة</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="76"/>
@@ -25,7 +25,7 @@
 <context>
     <name>LXQt::NotificationPrivate</name>
     <message>
-        <location filename="../lxqtnotification.cpp" line="163"/>
+        <location filename="../lxqtnotification.cpp" line="161"/>
         <source>Notifications Fallback</source>
         <translation>احتياطي الإخطارات</translation>
     </message>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="148"/>
         <source>LXQt Session Suspend</source>
-        <translation>تعليق جلسة لكسكيوت</translation>
+        <translation>تعليق جلسة LXQt</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="149"/>
@@ -70,7 +70,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="158"/>
         <source>LXQt Session Hibernate</source>
-        <translation>إسبات جلسة لكسكيوت</translation>
+        <translation>إسبات جلسة LXQt</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="159"/>
@@ -80,7 +80,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="168"/>
         <source>LXQt Session Reboot</source>
-        <translation>إعادة إقلاع جلسة لكسكيوت</translation>
+        <translation>إعادة إقلاع جلسة LXQt</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="169"/>
@@ -90,7 +90,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="178"/>
         <source>LXQt Session Shutdown</source>
-        <translation>إطفاء جلسة لكسكيوت</translation>
+        <translation>إطفاء جلسة LXQt</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="179"/>
@@ -100,7 +100,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="188"/>
         <source>LXQt Session Logout</source>
-        <translation>الخروج من جلسة لكسكيوت</translation>
+        <translation>الخروج من جلسة LXQt</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="189"/>
@@ -111,7 +111,7 @@
         <location filename="../lxqtpowermanager.cpp" line="197"/>
         <location filename="../lxqtpowermanager.cpp" line="202"/>
         <source>LXQt Power Manager Error</source>
-        <translation>خطأ في مدير لكسكيوت للطاقة</translation>
+        <translation>خطأ في مدير LXQt للطاقة</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="197"/>
@@ -127,22 +127,22 @@
 <context>
     <name>LXQt::ScreenSaver</name>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="160"/>
+        <location filename="../lxqtscreensaver.cpp" line="161"/>
         <source>Failed to run  &quot;%1&quot;. Ensure you have a locker/screensaver compatible with xdg-screensaver installed and running.</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل تشغيل &quot;%1&quot;. تأكد من أن لديك خزانة / شاشة توقف متوافقة مع xdg-screensaver مثبتة وقيد التشغيل.</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="164"/>
+        <location filename="../lxqtscreensaver.cpp" line="165"/>
         <source>Failed to run  &quot;%1&quot;. Ensure the specified locker/screensaver is installed and running.</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل تشغيل &quot;%1&quot;. تأكد من تثبيت وتشغيل الخزانة / شاشة التوقف المحددة.</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="242"/>
+        <location filename="../lxqtscreensaver.cpp" line="247"/>
         <source>Lock Screen</source>
         <translation>اقفل الشاشة</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="155"/>
+        <location filename="../lxqtscreensaver.cpp" line="156"/>
         <source>Screen Saver Error</source>
         <translation>خطأ في حافظ الشاشة</translation>
     </message>
@@ -150,7 +150,7 @@
 <context>
     <name>QCoreApplication</name>
     <message>
-        <location filename="../configdialog/lxqtconfigdialogcmdlineoptions.cpp" line="49"/>
+        <location filename="../configdialog/lxqtconfigdialogcmdlineoptions.cpp" line="47"/>
         <source>Choose the page to be shown.</source>
         <translation>اختر الصفحة التي ستُعرض.</translation>
     </message>

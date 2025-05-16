@@ -32,7 +32,7 @@
 #include <QProcess>
 #include <QDebug>
 #include "lxqtnotification.h"
-#include <signal.h> // for kill()
+#include <csignal> // for kill()
 
 #define UPOWER_SERVICE          "org.freedesktop.UPower"
 #define UPOWER_PATH             "/org/freedesktop/UPower"
@@ -85,8 +85,8 @@ static bool dbusCall(const QString &service,
         {
             Notification::notify(
                                     QObject::tr("Power Manager Error"),
-                                    QObject::tr("QDBusInterface is invalid") + QL1S("\n\n") + service + QL1C(' ') + path + QL1C(' ') + interface + QL1C(' ') + method,
-                                    QL1S("lxqt-logo.png"));
+                                    QObject::tr("QDBusInterface is invalid") + QL1SV("\n\n") + service + QL1C(' ') + path + QL1C(' ') + interface + QL1C(' ') + method,
+                                    QL1SV("lxqt-logo.png"));
         }
         return false;
     }
@@ -100,8 +100,8 @@ static bool dbusCall(const QString &service,
         {
             Notification::notify(
                                     QObject::tr("Power Manager Error (D-BUS call)"),
-                                    msg.errorName() + QL1S("\n\n") + msg.errorMessage(),
-                                    QL1S("lxqt-logo.png"));
+                                    msg.errorName() + QL1SV("\n\n") + msg.errorMessage(),
+                                    QL1SV("lxqt-logo.png"));
         }
     }
 
@@ -135,13 +135,13 @@ static bool dbusCallSystemd(const QString &service,
         {
             Notification::notify(
                                     QObject::tr("Power Manager Error"),
-                                    QObject::tr("QDBusInterface is invalid") + QL1S("\n\n") + service + QL1C(' ') + path + QL1C(' ')+ interface + QL1C(' ') + method,
-                                    QL1S("lxqt-logo.png"));
+                                    QObject::tr("QDBusInterface is invalid") + QL1SV("\n\n") + service + QL1C(' ') + path + QL1C(' ')+ interface + QL1C(' ') + method,
+                                    QL1SV("lxqt-logo.png"));
         }
         return false;
     }
 
-    QDBusMessage msg = dbus.call(method, needBoolArg ? QVariant(true) : QVariant());
+    QDBusMessage msg = needBoolArg ? dbus.call(method, QVariant(true)) : dbus.call(method);
 
     if (!msg.errorName().isEmpty())
     {
@@ -150,8 +150,8 @@ static bool dbusCallSystemd(const QString &service,
         {
             Notification::notify(
                                     QObject::tr("Power Manager Error (D-BUS call)"),
-                                    msg.errorName() + QL1S("\n\n") + msg.errorMessage(),
-                                    QL1S("lxqt-logo.png"));
+                                    msg.errorName() + QL1SV("\n\n") + msg.errorMessage(),
+                                    QL1SV("lxqt-logo.png"));
         }
     }
 
@@ -161,7 +161,7 @@ static bool dbusCallSystemd(const QString &service,
 
     QString response = msg.arguments().constFirst().toString();
     qDebug() << "systemd:" << method << "=" << response;
-    return response == QL1S("yes") || response == QL1S("challenge");
+    return response == QL1SV("yes") || response == QL1SV("challenge");
 }
 
 
@@ -187,7 +187,7 @@ bool dbusGetProperty(const QString &service,
         return false;
     }
 
-    QDBusMessage msg = dbus.call(QL1S("Get"), dbus.interface(), property);
+    QDBusMessage msg = dbus.call(QL1SV("Get"), dbus.interface(), property);
 
     if (!msg.errorName().isEmpty())
     {
@@ -214,9 +214,7 @@ PowerProvider::PowerProvider(QObject *parent):
 }
 
 
-PowerProvider::~PowerProvider()
-{
-}
+PowerProvider::~PowerProvider() = default;
 
 
 
@@ -229,9 +227,7 @@ UPowerProvider::UPowerProvider(QObject *parent):
 }
 
 
-UPowerProvider::~UPowerProvider()
-{
-}
+UPowerProvider::~UPowerProvider() = default;
 
 
 bool UPowerProvider::canAction(Power::Action action) const
@@ -241,13 +237,13 @@ bool UPowerProvider::canAction(Power::Action action) const
     switch (action)
     {
     case Power::PowerHibernate:
-        property = QL1S("CanHibernate");
-        command  = QL1S("HibernateAllowed");
+        property = QL1SV("CanHibernate");
+        command  = QL1SV("HibernateAllowed");
         break;
 
     case Power::PowerSuspend:
-        property = QL1S("CanSuspend");
-        command  = QL1S("SuspendAllowed");
+        property = QL1SV("CanSuspend");
+        command  = QL1SV("SuspendAllowed");
         break;
 
     default:
@@ -255,17 +251,17 @@ bool UPowerProvider::canAction(Power::Action action) const
     }
 
     return  dbusGetProperty(  // Whether the system is able to hibernate.
-                QL1S(UPOWER_SERVICE),
-                QL1S(UPOWER_PATH),
-                QL1S(PROPERTIES_INTERFACE),
+                QL1SV(UPOWER_SERVICE),
+                QL1SV(UPOWER_PATH),
+                QL1SV(PROPERTIES_INTERFACE),
                 QDBusConnection::systemBus(),
                 property
             )
             &&
             dbusCall( // Check if the caller has (or can get) the PolicyKit privilege to call command.
-                QL1S(UPOWER_SERVICE),
-                QL1S(UPOWER_PATH),
-                QL1S(UPOWER_INTERFACE),
+                QL1SV(UPOWER_SERVICE),
+                QL1SV(UPOWER_PATH),
+                QL1SV(UPOWER_INTERFACE),
                 QDBusConnection::systemBus(),
                 command,
                 // canAction should be always silent because it can freeze
@@ -283,11 +279,11 @@ bool UPowerProvider::doAction(Power::Action action)
     switch (action)
     {
     case Power::PowerHibernate:
-        command = QL1S("Hibernate");
+        command = QL1SV("Hibernate");
         break;
 
     case Power::PowerSuspend:
-        command = QL1S("Suspend");
+        command = QL1SV("Suspend");
         break;
 
     default:
@@ -295,9 +291,9 @@ bool UPowerProvider::doAction(Power::Action action)
     }
 
 
-    return dbusCall(QL1S(UPOWER_SERVICE),
-             QL1S(UPOWER_PATH),
-             QL1S(UPOWER_INTERFACE),
+    return dbusCall(QL1SV(UPOWER_SERVICE),
+             QL1SV(UPOWER_PATH),
+             QL1SV(UPOWER_INTERFACE),
              QDBusConnection::systemBus(),
              command );
 }
@@ -313,9 +309,7 @@ ConsoleKitProvider::ConsoleKitProvider(QObject *parent):
 }
 
 
-ConsoleKitProvider::~ConsoleKitProvider()
-{
-}
+ConsoleKitProvider::~ConsoleKitProvider() = default;
 
 
 bool ConsoleKitProvider::canAction(Power::Action action) const
@@ -324,28 +318,28 @@ bool ConsoleKitProvider::canAction(Power::Action action) const
     switch (action)
     {
     case Power::PowerReboot:
-        command = QL1S("CanReboot");
+        command = QL1SV("CanReboot");
         break;
 
     case Power::PowerShutdown:
-        command = QL1S("CanPowerOff");
+        command = QL1SV("CanPowerOff");
         break;
 
     case Power::PowerHibernate:
-        command  = QL1S("CanHibernate");
+        command  = QL1SV("CanHibernate");
         break;
 
     case Power::PowerSuspend:
-        command  = QL1S("CanSuspend");
+        command  = QL1SV("CanSuspend");
         break;
 
     default:
         return false;
     }
 
-    return dbusCallSystemd(QL1S(CONSOLEKIT_SERVICE),
-                    QL1S(CONSOLEKIT_PATH),
-                    QL1S(CONSOLEKIT_INTERFACE),
+    return dbusCallSystemd(QL1SV(CONSOLEKIT_SERVICE),
+                    QL1SV(CONSOLEKIT_PATH),
+                    QL1SV(CONSOLEKIT_INTERFACE),
                     QDBusConnection::systemBus(),
                     command,
                     false,
@@ -363,28 +357,28 @@ bool ConsoleKitProvider::doAction(Power::Action action)
     switch (action)
     {
     case Power::PowerReboot:
-        command = QL1S("Reboot");
+        command = QL1SV("Reboot");
         break;
 
     case Power::PowerShutdown:
-        command = QL1S("PowerOff");
+        command = QL1SV("PowerOff");
         break;
 
     case Power::PowerHibernate:
-        command = QL1S("Hibernate");
+        command = QL1SV("Hibernate");
         break;
 
     case Power::PowerSuspend:
-        command = QL1S("Suspend");
+        command = QL1SV("Suspend");
         break;
 
     default:
         return false;
     }
 
-    return dbusCallSystemd(QL1S(CONSOLEKIT_SERVICE),
-                QL1S(CONSOLEKIT_PATH),
-                QL1S(CONSOLEKIT_INTERFACE),
+    return dbusCallSystemd(QL1SV(CONSOLEKIT_SERVICE),
+                QL1SV(CONSOLEKIT_PATH),
+                QL1SV(CONSOLEKIT_INTERFACE),
                 QDBusConnection::systemBus(),
                 command,
                 true
@@ -403,9 +397,7 @@ SystemdProvider::SystemdProvider(QObject *parent):
 }
 
 
-SystemdProvider::~SystemdProvider()
-{
-}
+SystemdProvider::~SystemdProvider() = default;
 
 
 bool SystemdProvider::canAction(Power::Action action) const
@@ -415,28 +407,28 @@ bool SystemdProvider::canAction(Power::Action action) const
     switch (action)
     {
     case Power::PowerReboot:
-        command = QL1S("CanReboot");
+        command = QL1SV("CanReboot");
         break;
 
     case Power::PowerShutdown:
-        command = QL1S("CanPowerOff");
+        command = QL1SV("CanPowerOff");
         break;
 
     case Power::PowerSuspend:
-        command = QL1S("CanSuspend");
+        command = QL1SV("CanSuspend");
         break;
 
     case Power::PowerHibernate:
-        command = QL1S("CanHibernate");
+        command = QL1SV("CanHibernate");
         break;
 
     default:
         return false;
     }
 
-    return dbusCallSystemd(QL1S(SYSTEMD_SERVICE),
-                    QL1S(SYSTEMD_PATH),
-                    QL1S(SYSTEMD_INTERFACE),
+    return dbusCallSystemd(QL1SV(SYSTEMD_SERVICE),
+                    QL1SV(SYSTEMD_PATH),
+                    QL1SV(SYSTEMD_INTERFACE),
                     QDBusConnection::systemBus(),
                     command,
                     false,
@@ -455,28 +447,28 @@ bool SystemdProvider::doAction(Power::Action action)
     switch (action)
     {
     case Power::PowerReboot:
-        command = QL1S("Reboot");
+        command = QL1SV("Reboot");
         break;
 
     case Power::PowerShutdown:
-        command = QL1S("PowerOff");
+        command = QL1SV("PowerOff");
         break;
 
     case Power::PowerSuspend:
-        command = QL1S("Suspend");
+        command = QL1SV("Suspend");
         break;
 
     case Power::PowerHibernate:
-        command = QL1S("Hibernate");
+        command = QL1SV("Hibernate");
         break;
 
     default:
         return false;
     }
 
-    return dbusCallSystemd(QL1S(SYSTEMD_SERVICE),
-             QL1S(SYSTEMD_PATH),
-             QL1S(SYSTEMD_INTERFACE),
+    return dbusCallSystemd(QL1SV(SYSTEMD_SERVICE),
+             QL1SV(SYSTEMD_PATH),
+             QL1SV(SYSTEMD_INTERFACE),
              QDBusConnection::systemBus(),
              command,
              true
@@ -493,9 +485,7 @@ LXQtProvider::LXQtProvider(QObject *parent):
 }
 
 
-LXQtProvider::~LXQtProvider()
-{
-}
+LXQtProvider::~LXQtProvider() = default;
 
 
 bool LXQtProvider::canAction(Power::Action action) const
@@ -504,20 +494,20 @@ bool LXQtProvider::canAction(Power::Action action) const
     switch (action)
     {
         case Power::PowerLogout:
-            command = QL1S("canLogout");
+            command = QL1SV("canLogout");
             break;
         case Power::PowerReboot:
-            command = QL1S("canReboot");
+            command = QL1SV("canReboot");
             break;
         case Power::PowerShutdown:
-            command = QL1S("canPowerOff");
+            command = QL1SV("canPowerOff");
             break;
         default:
             return false;
     }
 
     // there can be case when lxqtsession-session does not run
-    return dbusCall(QL1S(LXQT_SERVICE), QL1S(LXQT_PATH), QL1S(LXQT_INTERFACE),
+    return dbusCall(QL1SV(LXQT_SERVICE), QL1SV(LXQT_PATH), QL1SV(LXQT_INTERFACE),
             QDBusConnection::sessionBus(), command,
             PowerProvider::DontCheckDBUS);
 }
@@ -529,21 +519,21 @@ bool LXQtProvider::doAction(Power::Action action)
     switch (action)
     {
         case Power::PowerLogout:
-            command = QL1S("logout");
+            command = QL1SV("logout");
             break;
         case Power::PowerReboot:
-            command = QL1S("reboot");
+            command = QL1SV("reboot");
             break;
         case Power::PowerShutdown:
-            command = QL1S("powerOff");
+            command = QL1SV("powerOff");
             break;
         default:
             return false;
     }
 
-    return dbusCall(QL1S(LXQT_SERVICE),
-             QL1S(LXQT_PATH),
-             QL1S(LXQT_INTERFACE),
+    return dbusCall(QL1SV(LXQT_SERVICE),
+             QL1SV(LXQT_PATH),
+             QL1SV(LXQT_INTERFACE),
              QDBusConnection::sessionBus(),
              command
             );
@@ -555,13 +545,11 @@ bool LXQtProvider::doAction(Power::Action action)
 LxSessionProvider::LxSessionProvider(QObject *parent):
     PowerProvider(parent)
 {
-    pid = (Q_PID)qgetenv("_LXSESSION_PID").toLong();
+    pid = (qint64)qgetenv("_LXSESSION_PID").toLong();
 }
 
 
-LxSessionProvider::~LxSessionProvider()
-{
-}
+LxSessionProvider::~LxSessionProvider() = default;
 
 
 bool LxSessionProvider::canAction(Power::Action action) const
@@ -601,9 +589,7 @@ HalProvider::HalProvider(QObject *parent):
 }
 
 
-HalProvider::~HalProvider()
-{
-}
+HalProvider::~HalProvider() = default;
 
 
 bool HalProvider::canAction(Power::Action action) const
@@ -625,38 +611,36 @@ bool HalProvider::doAction(Power::Action action)
  ************************************************/
 CustomProvider::CustomProvider(QObject *parent):
     PowerProvider(parent),
-    mSettings(QL1S("power"))
+    mSettings(QL1SV("power"))
 {
 }
 
-CustomProvider::~CustomProvider()
-{
-}
+CustomProvider::~CustomProvider() = default;
 
 bool CustomProvider::canAction(Power::Action action) const
 {
     switch (action)
     {
     case Power::PowerShutdown:
-        return mSettings.contains(QL1S("shutdownCommand"));
+        return mSettings.contains(QL1SV("shutdownCommand"));
 
     case Power::PowerReboot:
-        return mSettings.contains(QL1S("rebootCommand"));
+        return mSettings.contains(QL1SV("rebootCommand"));
 
     case Power::PowerHibernate:
-        return mSettings.contains(QL1S("hibernateCommand"));
+        return mSettings.contains(QL1SV("hibernateCommand"));
 
     case Power::PowerSuspend:
-        return mSettings.contains(QL1S("suspendCommand"));
+        return mSettings.contains(QL1SV("suspendCommand"));
 
     case Power::PowerLogout:
-        return mSettings.contains(QL1S("logoutCommand"));
+        return mSettings.contains(QL1SV("logoutCommand"));
 
     case Power::PowerMonitorOff:
-        return mSettings.contains(QL1S("monitorOffCommand"));
+        return mSettings.contains(QL1SV("monitorOffCommand"));
 
     case Power::PowerShowLeaveDialog:
-        return mSettings.contains(QL1S("showLeaveDialogCommand"));
+        return mSettings.contains(QL1SV("showLeaveDialogCommand"));
 
     default:
         return false;
@@ -670,40 +654,37 @@ bool CustomProvider::doAction(Power::Action action)
     switch(action)
     {
     case Power::PowerShutdown:
-        command = mSettings.value(QL1S("shutdownCommand")).toString();
+        command = mSettings.value(QL1SV("shutdownCommand")).toString();
         break;
 
     case Power::PowerReboot:
-        command = mSettings.value(QL1S("rebootCommand")).toString();
+        command = mSettings.value(QL1SV("rebootCommand")).toString();
         break;
 
     case Power::PowerHibernate:
-        command = mSettings.value(QL1S("hibernateCommand")).toString();
+        command = mSettings.value(QL1SV("hibernateCommand")).toString();
         break;
 
     case Power::PowerSuspend:
-        command = mSettings.value(QL1S("suspendCommand")).toString();
+        command = mSettings.value(QL1SV("suspendCommand")).toString();
         break;
 
     case Power::PowerLogout:
-        command = mSettings.value(QL1S("logoutCommand")).toString();
+        command = mSettings.value(QL1SV("logoutCommand")).toString();
         break;
 
     case Power::PowerMonitorOff:
-        command = mSettings.value(QL1S("monitorOffCommand")).toString();
+        command = mSettings.value(QL1SV("monitorOffCommand")).toString();
         break;
 
     case Power::PowerShowLeaveDialog:
-        command = mSettings.value(QL1S("showLeaveDialogCommand")).toString();
+        command = mSettings.value(QL1SV("showLeaveDialogCommand")).toString();
         break;
 
     default:
         return false;
     }
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    return QProcess::startDetached(command);
-#else
     QStringList args = QProcess::splitCommand(command);
     if (args.isEmpty())
         return false;
@@ -712,5 +693,4 @@ bool CustomProvider::doAction(Power::Action action)
     process.setProgram(args.takeFirst());
     process.setArguments(args);
     return process.startDetached();
-#endif
 }

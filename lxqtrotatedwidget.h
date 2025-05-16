@@ -65,7 +65,7 @@ public:
     QSize sizeHint() const override;
 
     QSize adjustedSize(QSize) const;
-    QPoint adjustedPoint(QPoint) const;
+    QPointF adjustedPoint(QPointF) const;
 
 
     bool transferMousePressEvent() const { return mTransferMousePressEvent; }
@@ -102,7 +102,7 @@ protected:
 #ifndef QT_NO_WHEELEVENT
     void wheelEvent(QWheelEvent *) override;
 #endif
-    void enterEvent(QEvent *) override;
+    void enterEvent(QEnterEvent *) override;
     void leaveEvent(QEvent *) override;
 
     void resizeEvent(QResizeEvent *) override;

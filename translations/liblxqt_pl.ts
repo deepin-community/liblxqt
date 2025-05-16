@@ -25,7 +25,7 @@
 <context>
     <name>LXQt::NotificationPrivate</name>
     <message>
-        <location filename="../lxqtnotification.cpp" line="163"/>
+        <location filename="../lxqtnotification.cpp" line="161"/>
         <source>Notifications Fallback</source>
         <translation>Rozwiązanie rezerwowe dla powiadomień</translation>
     </message>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="149"/>
         <source>Do you want to really suspend your computer?&lt;p&gt;Suspends the computer into a low power state. System state is not preserved if the power is lost.</source>
-        <translation>Czy jesteś pewien, że chcesz uśpić swój komputer?&lt;p&gt;Przełącza komputer w stan niskiego poboru prądu. Stan systemu nie jest zabezpieczony przed utratą zasilania.</translation>
+        <translation>Czy na pewno chcesz uśpić swój komputer?&lt;p&gt;Przełącza komputer w stan niskiego poboru prądu. Stan systemu nie jest zabezpieczony przed utratą zasilania.</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="158"/>
@@ -75,7 +75,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="159"/>
         <source>Do you want to really hibernate your computer?&lt;p&gt;Hibernates the computer into a low power state. System state is preserved if the power is lost.</source>
-        <translation>Czy jesteś pewien, że chcesz zahibernować swój komputer?&lt;p&gt;Przełącza komputer w stan niskiego poboru prądu. Stan systemu jest zabezpieczony przed utratą zasilania.</translation>
+        <translation>Czy na pewno chcesz zahibernować swój komputer?&lt;p&gt;Przełącza komputer w stan niskiego poboru prądu. Stan systemu jest zabezpieczony przed utratą zasilania.</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="168"/>
@@ -85,7 +85,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="169"/>
         <source>Do you want to really restart your computer? All unsaved work will be lost...</source>
-        <translation>Czy jesteś pewien, że chcesz ponownie uruchomić swój komputer?&lt;p&gt;Cała niezapisana praca zostanie utracona...</translation>
+        <translation>Czy na pewno chcesz ponownie uruchomić swój komputer?&lt;p&gt;Cała niezapisana praca zostanie utracona...</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="178"/>
@@ -95,7 +95,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="179"/>
         <source>Do you want to really switch off your computer? All unsaved work will be lost...</source>
-        <translation>Czy jesteś pewien, że chcesz wyłączyć swój komputer?&lt;p&gt;Cała niezapisana praca zostanie utracona...</translation>
+        <translation>Czy na pewno chcesz wyłączyć swój komputer?&lt;p&gt;Cała niezapisana praca zostanie utracona...</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="188"/>
@@ -105,7 +105,7 @@
     <message>
         <location filename="../lxqtpowermanager.cpp" line="189"/>
         <source>Do you want to really logout? All unsaved work will be lost...</source>
-        <translation>Czy jesteś pewien, że chcesz się wylogować?&lt;p&gt;Cała niezapisana praca zostanie utracona...</translation>
+        <translation>Czy na pewno chcesz się wylogować?&lt;p&gt;Cała niezapisana praca zostanie utracona...</translation>
     </message>
     <message>
         <location filename="../lxqtpowermanager.cpp" line="197"/>
@@ -127,22 +127,22 @@
 <context>
     <name>LXQt::ScreenSaver</name>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="160"/>
+        <location filename="../lxqtscreensaver.cpp" line="161"/>
         <source>Failed to run  &quot;%1&quot;. Ensure you have a locker/screensaver compatible with xdg-screensaver installed and running.</source>
         <translation>Nie udało się uruchomić &quot;%1&quot;. Upewnij się, że masz zainstalowany i uruchomiony ekran blokady lub wygaszacz ekranu kompatybilny z xdg-screensaver.</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="164"/>
+        <location filename="../lxqtscreensaver.cpp" line="165"/>
         <source>Failed to run  &quot;%1&quot;. Ensure the specified locker/screensaver is installed and running.</source>
         <translation>Nie udało się uruchomić &quot;%1&quot;. Upewnij się, że określony ekran blokady lub wygaszacz ekranu jest zainstalowany i uruchomiony.</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="242"/>
+        <location filename="../lxqtscreensaver.cpp" line="247"/>
         <source>Lock Screen</source>
         <translation>Zablokuj ekran</translation>
     </message>
     <message>
-        <location filename="../lxqtscreensaver.cpp" line="155"/>
+        <location filename="../lxqtscreensaver.cpp" line="156"/>
         <source>Screen Saver Error</source>
         <translation>Błąd wygaszacza ekranu</translation>
     </message>
@@ -150,9 +150,9 @@
 <context>
     <name>QCoreApplication</name>
     <message>
-        <location filename="../configdialog/lxqtconfigdialogcmdlineoptions.cpp" line="49"/>
+        <location filename="../configdialog/lxqtconfigdialogcmdlineoptions.cpp" line="47"/>
         <source>Choose the page to be shown.</source>
-        <translation>Wybierz stronę do wyświetlenia</translation>
+        <translation>Wybierz stronę do wyświetlenia.</translation>
     </message>
 </context>
 <context>
